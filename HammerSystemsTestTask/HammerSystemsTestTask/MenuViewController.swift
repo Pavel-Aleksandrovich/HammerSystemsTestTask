@@ -49,17 +49,46 @@ final class MenuBarButtonView: UIView {
 
 final class MenuViewController: UIViewController {
     
+    private let mainView = MenuView()
+    
     private let leftBarButtonView = MenuBarButtonView()
+    
+    override func loadView() {
+        view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        
+        mainView.tableViewDelegate = self
+        mainView.tableViewDataSource = self
         
         let item = UIBarButtonItem(customView: leftBarButtonView)
         navigationItem.leftBarButtonItem = item
         
     }
     
-    
 }
 
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        170
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableCell.id, for: indexPath) as? MenuTableCell else { return UITableViewCell() }
+        
+        
+        
+        return cell
+    }
+    
+    
+    
+}
