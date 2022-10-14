@@ -9,10 +9,6 @@ import UIKit
 
 final class MenuHeaderCollectionCell: UICollectionViewCell {
     
-    private enum Constants {
-        static let cornerRadius: CGFloat = 5
-    }
-    
     static let id = String(describing: MenuHeaderCollectionCell.self)
     
     private let categoryLabel = UILabel()
@@ -29,10 +25,6 @@ final class MenuHeaderCollectionCell: UICollectionViewCell {
         self.makeConstraints()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        print(frame.height)
-    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

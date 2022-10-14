@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842B852228F9682600674976 /* MenuHeaderCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B852128F9682600674976 /* MenuHeaderCollectionAdapter.swift */; };
+		842B852428F9690F00674976 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B852328F9690F00674976 /* NetworkService.swift */; };
+		842B852628F9694700674976 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B852528F9694700674976 /* DTO.swift */; };
 		843D625328F824120079945F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625228F824120079945F /* AppDelegate.swift */; };
 		843D625528F824120079945F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625428F824120079945F /* SceneDelegate.swift */; };
 		843D625728F824120079945F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625628F824120079945F /* MenuViewController.swift */; };
@@ -19,9 +22,15 @@
 		843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626C28F923D20079945F /* MenuBarButtonView.swift */; };
 		843D626F28F925140079945F /* MenuHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626E28F925140079945F /* MenuHeaderCollectionView.swift */; };
 		843D627128F926150079945F /* MenuHeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627028F926150079945F /* MenuHeaderCollectionCell.swift */; };
+		843D627328F93C6E0079945F /* MenuAdTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627228F93C6E0079945F /* MenuAdTableCell.swift */; };
+		843D627528F93D7D0079945F /* MenuAdCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627428F93D7D0079945F /* MenuAdCollectionCell.swift */; };
+		843D627928F94D1C0079945F /* CollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627828F94D1C0079945F /* CollectionAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		842B852128F9682600674976 /* MenuHeaderCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionAdapter.swift; sourceTree = "<group>"; };
+		842B852328F9690F00674976 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		842B852528F9694700674976 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		843D624F28F824120079945F /* HammerSystemsTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HammerSystemsTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843D625228F824120079945F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843D625428F824120079945F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +45,9 @@
 		843D626C28F923D20079945F /* MenuBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButtonView.swift; sourceTree = "<group>"; };
 		843D626E28F925140079945F /* MenuHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionView.swift; sourceTree = "<group>"; };
 		843D627028F926150079945F /* MenuHeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionCell.swift; sourceTree = "<group>"; };
+		843D627228F93C6E0079945F /* MenuAdTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdTableCell.swift; sourceTree = "<group>"; };
+		843D627428F93D7D0079945F /* MenuAdCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdCollectionCell.swift; sourceTree = "<group>"; };
+		843D627828F94D1C0079945F /* CollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +61,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842B852928F9992700674976 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				843D627A28F94FCB0079945F /* ViewController */,
+				843D627628F94C140079945F /* AdsCell */,
+				843D627B28F950830079945F /* HeaderView */,
+				843D627728F94C400079945F /* TableCell */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		842B852A28F9993E00674976 /* Moduls */ = {
+			isa = PBXGroup;
+			children = (
+				843D626628F827640079945F /* TabBarAssembly.swift */,
+				842B852928F9992700674976 /* Menu */,
+			);
+			path = Moduls;
+			sourceTree = "<group>";
+		};
 		843D624628F824120079945F = {
 			isa = PBXGroup;
 			children = (
@@ -68,21 +100,55 @@
 		843D625128F824120079945F /* HammerSystemsTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				842B852328F9690F00674976 /* NetworkService.swift */,
+				842B852528F9694700674976 /* DTO.swift */,
+				842B852A28F9993E00674976 /* Moduls */,
 				843D625228F824120079945F /* AppDelegate.swift */,
 				843D625428F824120079945F /* SceneDelegate.swift */,
-				843D626628F827640079945F /* TabBarAssembly.swift */,
-				843D625628F824120079945F /* MenuViewController.swift */,
-				843D627028F926150079945F /* MenuHeaderCollectionCell.swift */,
-				843D626E28F925140079945F /* MenuHeaderCollectionView.swift */,
-				843D626C28F923D20079945F /* MenuBarButtonView.swift */,
-				843D626A28F867430079945F /* MenuMainView.swift */,
-				843D626828F85E850079945F /* MenuTableCell.swift */,
 				843D625828F824120079945F /* Main.storyboard */,
 				843D625B28F824130079945F /* Assets.xcassets */,
 				843D625D28F824130079945F /* LaunchScreen.storyboard */,
 				843D626028F824130079945F /* Info.plist */,
 			);
 			path = HammerSystemsTestTask;
+			sourceTree = "<group>";
+		};
+		843D627628F94C140079945F /* AdsCell */ = {
+			isa = PBXGroup;
+			children = (
+				843D627228F93C6E0079945F /* MenuAdTableCell.swift */,
+				843D627428F93D7D0079945F /* MenuAdCollectionCell.swift */,
+				843D627828F94D1C0079945F /* CollectionAdapter.swift */,
+			);
+			path = AdsCell;
+			sourceTree = "<group>";
+		};
+		843D627728F94C400079945F /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				843D626828F85E850079945F /* MenuTableCell.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		843D627A28F94FCB0079945F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D625628F824120079945F /* MenuViewController.swift */,
+				843D626A28F867430079945F /* MenuMainView.swift */,
+				843D626C28F923D20079945F /* MenuBarButtonView.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		843D627B28F950830079945F /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				843D626E28F925140079945F /* MenuHeaderCollectionView.swift */,
+				843D627028F926150079945F /* MenuHeaderCollectionCell.swift */,
+				842B852128F9682600674976 /* MenuHeaderCollectionAdapter.swift */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,13 +223,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				843D626F28F925140079945F /* MenuHeaderCollectionView.swift in Sources */,
+				843D627928F94D1C0079945F /* CollectionAdapter.swift in Sources */,
 				843D626928F85E850079945F /* MenuTableCell.swift in Sources */,
 				843D626B28F867430079945F /* MenuMainView.swift in Sources */,
 				843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */,
 				843D625728F824120079945F /* MenuViewController.swift in Sources */,
 				843D626728F827640079945F /* TabBarAssembly.swift in Sources */,
 				843D625328F824120079945F /* AppDelegate.swift in Sources */,
+				843D627328F93C6E0079945F /* MenuAdTableCell.swift in Sources */,
+				842B852628F9694700674976 /* DTO.swift in Sources */,
+				842B852428F9690F00674976 /* NetworkService.swift in Sources */,
 				843D627128F926150079945F /* MenuHeaderCollectionCell.swift in Sources */,
+				842B852228F9682600674976 /* MenuHeaderCollectionAdapter.swift in Sources */,
+				843D627528F93D7D0079945F /* MenuAdCollectionCell.swift in Sources */,
 				843D625528F824120079945F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

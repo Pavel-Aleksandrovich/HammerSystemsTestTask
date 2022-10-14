@@ -30,7 +30,9 @@ final class MenuTableCell: UITableViewCell {
 
 extension MenuTableCell {
     
-    func setData(_ model: String) {
+    func setData(_ data: FoodViewModel) {
+        titleLabel.text = data.title
+        descriptionLabel.text = data.restaurantChain
     }
 }
 

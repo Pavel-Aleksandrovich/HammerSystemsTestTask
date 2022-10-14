@@ -9,7 +9,7 @@ import UIKit
 
 final class MenuMainView: UIView {
     
-    private let tableView = UITableView()
+    let tableView = UITableView()
     
     var tableViewDelegate: UITableViewDelegate? {
         get {
@@ -63,6 +63,8 @@ private extension MenuMainView {
         tableView.backgroundColor = .clear
         tableView.register(MenuTableCell.self,
                                 forCellReuseIdentifier: MenuTableCell.id)
+        tableView.register(MenuAdTableCell.self,
+                                forCellReuseIdentifier: MenuAdTableCell.id)
     }
 }
 
