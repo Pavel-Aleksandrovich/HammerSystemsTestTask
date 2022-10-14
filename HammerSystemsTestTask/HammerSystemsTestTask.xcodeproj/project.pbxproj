@@ -15,7 +15,10 @@
 		843D625F28F824130079945F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D625D28F824130079945F /* LaunchScreen.storyboard */; };
 		843D626728F827640079945F /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626628F827640079945F /* TabBarAssembly.swift */; };
 		843D626928F85E850079945F /* MenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626828F85E850079945F /* MenuTableCell.swift */; };
-		843D626B28F867430079945F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626A28F867430079945F /* MenuView.swift */; };
+		843D626B28F867430079945F /* MenuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626A28F867430079945F /* MenuMainView.swift */; };
+		843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626C28F923D20079945F /* MenuBarButtonView.swift */; };
+		843D626F28F925140079945F /* MenuHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D626E28F925140079945F /* MenuHeaderCollectionView.swift */; };
+		843D627128F926150079945F /* MenuHeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627028F926150079945F /* MenuHeaderCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +32,10 @@
 		843D626028F824130079945F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		843D626628F827640079945F /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		843D626828F85E850079945F /* MenuTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableCell.swift; sourceTree = "<group>"; };
-		843D626A28F867430079945F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		843D626A28F867430079945F /* MenuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuMainView.swift; sourceTree = "<group>"; };
+		843D626C28F923D20079945F /* MenuBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButtonView.swift; sourceTree = "<group>"; };
+		843D626E28F925140079945F /* MenuHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionView.swift; sourceTree = "<group>"; };
+		843D627028F926150079945F /* MenuHeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +72,10 @@
 				843D625428F824120079945F /* SceneDelegate.swift */,
 				843D626628F827640079945F /* TabBarAssembly.swift */,
 				843D625628F824120079945F /* MenuViewController.swift */,
-				843D626A28F867430079945F /* MenuView.swift */,
+				843D627028F926150079945F /* MenuHeaderCollectionCell.swift */,
+				843D626E28F925140079945F /* MenuHeaderCollectionView.swift */,
+				843D626C28F923D20079945F /* MenuBarButtonView.swift */,
+				843D626A28F867430079945F /* MenuMainView.swift */,
 				843D626828F85E850079945F /* MenuTableCell.swift */,
 				843D625828F824120079945F /* Main.storyboard */,
 				843D625B28F824130079945F /* Assets.xcassets */,
@@ -147,11 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843D626F28F925140079945F /* MenuHeaderCollectionView.swift in Sources */,
 				843D626928F85E850079945F /* MenuTableCell.swift in Sources */,
-				843D626B28F867430079945F /* MenuView.swift in Sources */,
+				843D626B28F867430079945F /* MenuMainView.swift in Sources */,
+				843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */,
 				843D625728F824120079945F /* MenuViewController.swift in Sources */,
 				843D626728F827640079945F /* TabBarAssembly.swift in Sources */,
 				843D625328F824120079945F /* AppDelegate.swift in Sources */,
+				843D627128F926150079945F /* MenuHeaderCollectionCell.swift in Sources */,
 				843D625528F824120079945F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MenuView: UIView {
+final class MenuMainView: UIView {
     
     private let tableView = UITableView()
     
@@ -40,7 +40,7 @@ final class MenuView: UIView {
     }
 }
 
-extension MenuView {
+extension MenuMainView {
     
     func reloadData() {
         self.tableView.reloadData()
@@ -48,7 +48,7 @@ extension MenuView {
 }
 
 // MARK: - Config Appearance
-private extension MenuView {
+private extension MenuMainView {
     
     func configAppearance() {
         configView()
@@ -67,7 +67,7 @@ private extension MenuView {
 }
 
 // MARK: - Make Constraints
-private extension MenuView {
+private extension MenuMainView {
     
     func makeConstraints() {
         makeTableViewConstraints()
@@ -80,7 +80,7 @@ private extension MenuView {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 200),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
