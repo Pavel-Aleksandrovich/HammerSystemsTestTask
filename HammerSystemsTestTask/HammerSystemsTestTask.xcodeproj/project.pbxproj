@@ -19,6 +19,7 @@
 		842B854028FBC95800674976 /* MenuAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B853F28FBC95800674976 /* MenuAssembly.swift */; };
 		842B854228FBD88000674976 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B854128FBD88000674976 /* MenuInteractor.swift */; };
 		842B854428FBE24A00674976 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B854328FBE24A00674976 /* FoodViewModel.swift */; };
+		842B854928FBE43400674976 /* ImageFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B854828FBE43400674976 /* ImageFamily.swift */; };
 		843D625328F824120079945F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625228F824120079945F /* AppDelegate.swift */; };
 		843D625528F824120079945F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625428F824120079945F /* SceneDelegate.swift */; };
 		843D625728F824120079945F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D625628F824120079945F /* MenuViewController.swift */; };
@@ -48,6 +49,7 @@
 		842B853F28FBC95800674976 /* MenuAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAssembly.swift; sourceTree = "<group>"; };
 		842B854128FBD88000674976 /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		842B854328FBE24A00674976 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
+		842B854828FBE43400674976 /* ImageFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFamily.swift; sourceTree = "<group>"; };
 		843D624F28F824120079945F /* HammerSystemsTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HammerSystemsTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843D625228F824120079945F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843D625428F824120079945F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				842B853B28FBC75E00674976 /* Category.swift */,
 				842B853928FBC43700674976 /* FontFamily.swift */,
+				842B854828FBE43400674976 /* ImageFamily.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				843D626B28F867430079945F /* MenuView.swift in Sources */,
 				843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */,
 				842B854028FBC95800674976 /* MenuAssembly.swift in Sources */,
+				842B854928FBE43400674976 /* ImageFamily.swift in Sources */,
 				842B853028FAE05100674976 /* PriceView.swift in Sources */,
 				843D625728F824120079945F /* MenuViewController.swift in Sources */,
 				842B853C28FBC75E00674976 /* Category.swift in Sources */,

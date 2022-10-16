@@ -28,7 +28,7 @@ final class MenuAdsCollectionCell: UICollectionViewCell {
 private extension MenuAdsCollectionCell {
     
     func configAppearance() {
-        adsImageView.image = UIImage(named: "ads")
+        adsImageView.image = ImageFamily.ads.name
         adsImageView.layer.cornerRadius = 20
         adsImageView.contentMode = .scaleAspectFill
         adsImageView.clipsToBounds = true

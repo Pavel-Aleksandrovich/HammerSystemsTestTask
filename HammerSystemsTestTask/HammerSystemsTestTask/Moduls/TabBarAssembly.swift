@@ -24,7 +24,7 @@ private extension TabBarAssembly {
     
     func createMenuViewController() -> UIViewController {
         let vc = MenuAssembly.build()
-        let image = UIImage(named: "menu")
+        let image = ImageFamily.menu.name
         vc.tabBarItem = UITabBarItem(title: "Меню",
                                      image: image,
                                      tag: 0)
@@ -34,7 +34,7 @@ private extension TabBarAssembly {
     
     func createContactViewController() -> UIViewController {
         let vc = UIViewController()
-        let image = UIImage(named: "contact")
+        let image = ImageFamily.contact.name
         vc.tabBarItem = UITabBarItem(title: "Контакты",
                                      image: image,
                                      tag: 1)
@@ -44,7 +44,7 @@ private extension TabBarAssembly {
     
     func createProfileViewController() -> UIViewController {
         let vc = UIViewController()
-        let image = UIImage(named: "profile")
+        let image = ImageFamily.profile.name
         vc.tabBarItem = UITabBarItem(title: "Профиль",
                                      image: image,
                                      tag: 2)
@@ -55,7 +55,7 @@ private extension TabBarAssembly {
     func createCartViewController() -> UIViewController {
         let vc = UIViewController()
         vc.view.backgroundColor = .white
-        let image = UIImage(named: "cart")
+        let image = ImageFamily.cart.name
         vc.tabBarItem = UITabBarItem(title: "Корзина",
                                      image: image,
                                      tag: 3)

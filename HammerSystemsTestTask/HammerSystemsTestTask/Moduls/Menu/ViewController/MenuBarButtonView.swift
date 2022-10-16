@@ -27,7 +27,7 @@ final class MenuBarButtonView: UIView {
 private extension MenuBarButtonView {
     
     func configAppearance() {
-        imageView.image = UIImage(named: "arrow")
+        imageView.image = ImageFamily.arrow.name
         imageView.contentMode = .scaleAspectFill
         
         title.text = "Moscow"
