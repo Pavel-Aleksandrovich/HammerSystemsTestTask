@@ -19,7 +19,7 @@ struct FoodViewModel {
               let title = model.title,
               let image = model.image,
               let restaurantChain = model.restaurantChain else { return nil }
-
+        
         self.id = id
         self.title = title
         self.image = image

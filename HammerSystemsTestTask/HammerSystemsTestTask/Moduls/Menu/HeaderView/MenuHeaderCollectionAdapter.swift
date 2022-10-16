@@ -11,7 +11,7 @@ final class MenuHeaderCollectionAdapter: NSObject {
     
     private let onCellTappedHandler: (String) -> ()
     
-    let categoriesArray = Category.allCases
+    private let categoriesArray = Category.allCases
     
     init(completion: @escaping(String) -> ()) {
         self.onCellTappedHandler = completion

@@ -17,16 +17,14 @@ protocol INetworkService: AnyObject {
 final class NetworkService {
     
     private enum Api {
-            static let key = "5abbbc3716094d93b1ca6e7cbff63ea1"
-        }
+        static let key = "5abbbc3716094d93b1ca6e7cbff63ea1"
+    }
     
     private let baseUrl = "https://api.spoonacular.com/"
     
     private let session = URLSession.shared
-    
-    
 }
-    
+
 extension NetworkService: INetworkService {
     
     func loadFood(category: String,
@@ -55,12 +53,10 @@ extension NetworkService: INetworkService {
     }
 }
 
-
 private extension NetworkService {
     
     func loadData<T: Decodable>(api: String,
                                 completion: @escaping (Result<T, Error>) -> ()) {
-        
         guard let url = URL(string: api) else { return }
         
         let request = URLRequest(url: url)

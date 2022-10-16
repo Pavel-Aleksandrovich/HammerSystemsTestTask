@@ -16,7 +16,7 @@ final class MenuViewController: UIViewController {
     
     private let mainView = MenuView()
     private let headerView = MenuHeaderCollectionView()
-    private let adapter = CollectionAdapter()
+    private let adsCollectionAdapter = MenuAdsCollectionAdapter()
     private let leftBarButtonView = MenuBarButtonView()
     
     private let presenter: IMenuPresenter
@@ -90,8 +90,8 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                                                            for: indexPath) as? MenuAdsTableCell
             else { return UITableViewCell() }
             
-            cell.delegate = adapter
-            cell.dataSource = adapter
+            cell.delegate = adsCollectionAdapter
+            cell.dataSource = adsCollectionAdapter
             
             return cell
         case 1:
@@ -114,9 +114,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView,
-                       didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -144,7 +144,6 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return nil
         }
-        
     }
 }
 

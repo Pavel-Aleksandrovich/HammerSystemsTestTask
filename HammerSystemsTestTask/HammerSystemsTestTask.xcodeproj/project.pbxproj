@@ -33,7 +33,7 @@
 		843D627128F926150079945F /* MenuHeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627028F926150079945F /* MenuHeaderCollectionCell.swift */; };
 		843D627328F93C6E0079945F /* MenuAdsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627228F93C6E0079945F /* MenuAdsTableCell.swift */; };
 		843D627528F93D7D0079945F /* MenuAdsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627428F93D7D0079945F /* MenuAdsCollectionCell.swift */; };
-		843D627928F94D1C0079945F /* CollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627828F94D1C0079945F /* CollectionAdapter.swift */; };
+		843D627928F94D1C0079945F /* MenuAdsCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627828F94D1C0079945F /* MenuAdsCollectionAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +65,7 @@
 		843D627028F926150079945F /* MenuHeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCollectionCell.swift; sourceTree = "<group>"; };
 		843D627228F93C6E0079945F /* MenuAdsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdsTableCell.swift; sourceTree = "<group>"; };
 		843D627428F93D7D0079945F /* MenuAdsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdsCollectionCell.swift; sourceTree = "<group>"; };
-		843D627828F94D1C0079945F /* CollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAdapter.swift; sourceTree = "<group>"; };
+		843D627828F94D1C0079945F /* MenuAdsCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdsCollectionAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +192,7 @@
 			children = (
 				843D627228F93C6E0079945F /* MenuAdsTableCell.swift */,
 				843D627428F93D7D0079945F /* MenuAdsCollectionCell.swift */,
-				843D627828F94D1C0079945F /* CollectionAdapter.swift */,
+				843D627828F94D1C0079945F /* MenuAdsCollectionAdapter.swift */,
 			);
 			path = AdsCell;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843D626F28F925140079945F /* MenuHeaderCollectionView.swift in Sources */,
-				843D627928F94D1C0079945F /* CollectionAdapter.swift in Sources */,
+				843D627928F94D1C0079945F /* MenuAdsCollectionAdapter.swift in Sources */,
 				843D626928F85E850079945F /* MenuTableCell.swift in Sources */,
 				843D626B28F867430079945F /* MenuView.swift in Sources */,
 				843D626D28F923D20079945F /* MenuBarButtonView.swift in Sources */,

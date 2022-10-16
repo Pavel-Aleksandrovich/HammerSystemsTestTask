@@ -48,8 +48,8 @@ extension MenuView {
     
     func scrollTo(row: Int, section: Int) {
         tableView.scrollToRow(at: IndexPath(row: row, section: section),
-                                            at: .top,
-                                            animated: true)
+                              at: .top,
+                              animated: true)
     }
 }
 
@@ -64,13 +64,13 @@ private extension MenuView {
     func configView() {
         backgroundColor = .white
     }
-
+    
     func configTableView() {
         tableView.backgroundColor = .clear
         tableView.register(MenuTableCell.self,
-                                forCellReuseIdentifier: MenuTableCell.id)
+                           forCellReuseIdentifier: MenuTableCell.id)
         tableView.register(MenuAdsTableCell.self,
-                                forCellReuseIdentifier: MenuAdsTableCell.id)
+                           forCellReuseIdentifier: MenuAdsTableCell.id)
     }
 }
 

@@ -61,7 +61,7 @@ extension MenuPresenter: IMenuPresenter {
     
     func onViewAttached(controller: IMenuViewController) {
         self.controller = controller
-//        loadData()
+        loadData()
     }
 }
 

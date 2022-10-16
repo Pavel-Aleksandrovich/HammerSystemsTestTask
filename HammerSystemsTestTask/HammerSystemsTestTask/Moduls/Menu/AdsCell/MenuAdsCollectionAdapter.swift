@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class CollectionAdapter: NSObject {}
+final class MenuAdsCollectionAdapter: NSObject {}
 
-extension CollectionAdapter: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+extension MenuAdsCollectionAdapter: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
