@@ -9,7 +9,9 @@ import UIKit
 
 protocol INetworkService: AnyObject {
     func loadFood(category: String,
-                  completion: @escaping (Result<Food, Error>) -> ())
+                  completion: @escaping (Result<FoodDTO, Error>) -> ())
+    func loadImageFrom(url: String,
+                       completion: @escaping(Result<Data, Error>) -> ())
 }
 
 final class NetworkService {
@@ -28,12 +30,31 @@ final class NetworkService {
 extension NetworkService: INetworkService {
     
     func loadFood(category: String,
-                  completion: @escaping (Result<Food, Error>) -> ()) {
+                  completion: @escaping (Result<FoodDTO, Error>) -> ()) {
         let api = baseUrl + "food/menuItems/search?query=" + "\(category)" + "&number=10&apiKey=" + Api.key
         
         loadData(api: api, completion: completion)
     }
+    
+    func loadImageFrom(url: String,
+                       completion: @escaping(Result<Data, Error>) -> ()) {
+        guard let url = URL(string: url) else { return }
+        
+        let request = URLRequest(url: url)
+        
+        self.session.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.failure(error))
+            }
+            
+            guard let data = data else { return }
+            
+            completion(.success(data))
+        }.resume()
+    }
 }
+
 
 private extension NetworkService {
     

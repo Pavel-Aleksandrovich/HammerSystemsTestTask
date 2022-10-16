@@ -13,27 +13,26 @@ final class MenuHeaderCollectionView: UIView {
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: layout)
     
-    var collectionViewDelegate: UICollectionViewDelegate? {
+    var delegate: UICollectionViewDelegate? {
         get {
             nil
         }
         set {
-            self.collectionView.delegate = newValue
+            collectionView.delegate = newValue
         }
     }
     
-    var collectionViewDataSource: UICollectionViewDataSource? {
+    var dataSource: UICollectionViewDataSource? {
         get {
             nil
         }
         set {
-            self.collectionView.dataSource = newValue
+            collectionView.dataSource = newValue
         }
     }
     
     init() {
         super.init(frame: .zero)
-        
         configAppearance()
         makeConstraints()
     }
@@ -41,33 +40,20 @@ final class MenuHeaderCollectionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 // MARK: - Config Appearance
 private extension MenuHeaderCollectionView {
     
     func configAppearance() {
-        self.configView()
-        self.configLayout()
-        self.configCollectionView()
-    }
-    
-    func configView() {
-        self.backgroundColor = .white
-    }
-    
-    func configLayout() {
-        self.layout.minimumInteritemSpacing = 8
-        self.layout.scrollDirection = .horizontal
-    }
-    
-    func configCollectionView() {
-        self.collectionView.backgroundColor = .clear
-        self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.register(MenuHeaderCollectionCell.self,
-                                     forCellWithReuseIdentifier: MenuHeaderCollectionCell.id)
+        backgroundColor = .white
+        
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .horizontal
+        
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(MenuHeaderCollectionCell.self,
+                                forCellWithReuseIdentifier: MenuHeaderCollectionCell.id)
     }
 }
 
@@ -75,19 +61,14 @@ private extension MenuHeaderCollectionView {
 private extension MenuHeaderCollectionView {
     
     func makeConstraints() {
-        self.makeCollectionViewConstraints()
-    }
-    
-    func makeCollectionViewConstraints() {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
         ])
-        
     }
 }

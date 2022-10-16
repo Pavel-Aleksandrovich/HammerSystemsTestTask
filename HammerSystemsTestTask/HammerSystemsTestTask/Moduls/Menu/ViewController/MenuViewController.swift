@@ -7,35 +7,32 @@
 
 import UIKit
 
+protocol IMenuViewController: AnyObject {
+    func reloadData()
+    func scrollTo(row: Int, section: Int)
+}
+
 final class MenuViewController: UIViewController {
     
-    private let mainView = MenuMainView()
-    let headerView = MenuHeaderCollectionView()
+    private let mainView = MenuView()
+    private let headerView = MenuHeaderCollectionView()
+    private let adapter = CollectionAdapter()
+    private let leftBarButtonView = MenuBarButtonView()
     
-    lazy var headAd = MenuHeaderCollectionAdapter { [self] string in
-        print(string)
-        
-        guard let firstCategoryItem = foodArray.firstIndex(where: { $0.category == string }) else { return }
-        
-        self.mainView.tableView.scrollToRow(at: IndexPath(row: firstCategoryItem, section: 1), at: .top, animated: true)
+    private let presenter: IMenuPresenter
+    
+    private lazy var headerCollectionAdapter = MenuHeaderCollectionAdapter { [ weak self ] string in
+        self?.presenter.didSelectCategory(string)
     }
     
-    let network: INetworkService = NetworkService()
+    init(presenter: IMenuPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private let group = DispatchGroup()
-    
-    let categoriesArray = ["burger",
-        "texas",
-         "belgian",
-         "kosher",
-         "pizza",
-         "drinks"]
-    
-    private var foodArray: [FoodViewModel] = []
-    
-    let adapter = CollectionAdapter()
-    
-    private let leftBarButtonView = MenuBarButtonView()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = mainView
@@ -43,49 +40,19 @@ final class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for category in categoriesArray {
-            
-            group.enter()
-            network.loadFood(category: category) { result in
-                switch result {
-                    
-                case .success(let arr):
-                    guard let arr = arr.menuItems else { return }
-                    
-                    let res = arr.compactMap { FoodViewModel(model: $0, category: category) }
-                    
-                    
-                    self.foodArray.append(contentsOf: res)
-                    self.group.leave()
-                case .failure(let err):
-                    print("ERROR --> \(err)")
-                }
-                self.group.wait()
-            }
-            self.group.wait()
-        }
-        
-        print(self.foodArray.count)
-        
+        presenter.onViewAttached(controller: self)
+        configAppearance()
+    }
+}
+
+extension MenuViewController: IMenuViewController {
+    
+    func scrollTo(row: Int, section: Int) {
+        mainView.scrollTo(row: row, section: section)
+    }
+    
+    func reloadData() {
         mainView.reloadData()
-        
-        mainView.tableViewDelegate = self
-        mainView.tableViewDataSource = self
-        
-        headerView.collectionViewDataSource = headAd
-        headerView.collectionViewDelegate = headAd
-        
-        
-        let item = UIBarButtonItem(customView: leftBarButtonView)
-        navigationItem.leftBarButtonItem = item
-        
-        navigationController?.navigationBar.tintColor = .black
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(),
-                                                               for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        
     }
 }
 
@@ -109,7 +76,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return foodArray.count
+            return presenter.numberOfRowsInSection
         default:
             return 0
         }
@@ -119,12 +86,12 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuAdTableCell.id,
-                                                           for: indexPath) as? MenuAdTableCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuAdsTableCell.id,
+                                                           for: indexPath) as? MenuAdsTableCell
             else { return UITableViewCell() }
             
-            cell.collectionViewDelegate = adapter
-            cell.collectionViewDataSource = adapter
+            cell.delegate = adapter
+            cell.dataSource = adapter
             
             return cell
         case 1:
@@ -132,7 +99,13 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                                                            for: indexPath) as? MenuTableCell
             else { return UITableViewCell() }
             
-            cell.setData(foodArray[indexPath.row])
+            let food = presenter.getFoodByIndex(indexPath.row)
+            
+            presenter.loadImageData(food.image) { data in
+                cell.setImageData(data)
+            }
+            
+            cell.setData(food)
             
             return cell
         default:
@@ -172,5 +145,26 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
         
+    }
+}
+
+// MARK: - Config Appearance
+private extension MenuViewController {
+    
+    func configAppearance() {
+        mainView.delegate = self
+        mainView.dataSource = self
+        
+        headerView.dataSource = headerCollectionAdapter
+        headerView.delegate = headerCollectionAdapter
+        
+        
+        let item = UIBarButtonItem(customView: leftBarButtonView)
+        navigationItem.leftBarButtonItem = item
+        
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.setBackgroundImage(UIImage(),
+                                                               for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 }

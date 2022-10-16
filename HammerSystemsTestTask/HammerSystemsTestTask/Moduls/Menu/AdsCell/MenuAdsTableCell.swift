@@ -7,40 +7,37 @@
 
 import UIKit
 
-final class MenuAdTableCell: UITableViewCell {
+final class MenuAdsTableCell: UITableViewCell {
     
-    static let id = String(describing: MenuAdTableCell.self)
+    static let id = String(describing: MenuAdsTableCell.self)
     
     private let layout = UICollectionViewFlowLayout()
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: layout)
     
-    var collectionViewDelegate: UICollectionViewDelegate? {
+    var delegate: UICollectionViewDelegate? {
         get {
             nil
         }
         set {
-            self.collectionView.delegate = newValue
+            collectionView.delegate = newValue
         }
     }
     
-    var collectionViewDataSource: UICollectionViewDataSource? {
+    var dataSource: UICollectionViewDataSource? {
         get {
             nil
         }
         set {
-            self.collectionView.dataSource = newValue
+            collectionView.dataSource = newValue
         }
     }
     
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.configAppearance()
-        self.makeConstraints()
-        
-        backgroundColor = .lightGray
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configAppearance()
+        makeConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -48,44 +45,38 @@ final class MenuAdTableCell: UITableViewCell {
     }
 }
 
-extension MenuAdTableCell {
-    
-    func config(_ category: String) {
-//        self.categoryLabel.text = category
-    }
-}
-
 // MARK: - Config Appearance
-private extension MenuAdTableCell {
+private extension MenuAdsTableCell {
     
     func configAppearance() {
-        self.configView()
-        self.configLayout()
-        self.configCollectionView()
+        configView()
+        configLayout()
+        configCollectionView()
     }
     
     func configView() {
-        self.backgroundColor = .white
+        backgroundColor = .white
         selectionStyle = .none
     }
     
     func configLayout() {
-        self.layout.minimumInteritemSpacing = 16
-        self.layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 16
+        layout.scrollDirection = .horizontal
     }
     
     func configCollectionView() {
-        self.collectionView.backgroundColor = .clear
-        self.collectionView.register(MenuAdCollectionCell.self,
-                                     forCellWithReuseIdentifier: MenuAdCollectionCell.id)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.register(MenuAdsCollectionCell.self,
+                                forCellWithReuseIdentifier: MenuAdsCollectionCell.id)
     }
 }
 
 // MARK: - Make Constraints
-private extension MenuAdTableCell {
+private extension MenuAdsTableCell {
     
     func makeConstraints() {
-        self.makeCollectionViewConstraints()
+        makeCollectionViewConstraints()
     }
     
     func makeCollectionViewConstraints() {

@@ -7,19 +7,15 @@
 
 import UIKit
 
-final class CollectionAdapter: NSObject {
-    
-    override init() {
-    }
-}
+final class CollectionAdapter: NSObject {}
 
-extension CollectionAdapter:   UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+extension CollectionAdapter: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: collectionView.bounds.width/5,
+        return CGSize(width: collectionView.bounds.width * 0.7,
                       height: collectionView.bounds.height)
     }
     
@@ -27,15 +23,14 @@ extension CollectionAdapter:   UICollectionViewDelegateFlowLayout, UICollectionV
                         numberOfItemsInSection section: Int) -> Int {
         20
     }
-     
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MenuAdCollectionCell.id,
-            for: indexPath) as? MenuAdCollectionCell else { return UICollectionViewCell() }
+            withReuseIdentifier: MenuAdsCollectionCell.id,
+            for: indexPath) as? MenuAdsCollectionCell else { return UICollectionViewCell() }
         
         return cell
     }
 }
-

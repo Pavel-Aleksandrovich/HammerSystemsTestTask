@@ -9,14 +9,9 @@ import UIKit
 
 final class MenuHeaderCollectionAdapter: NSObject {
     
-    let onCellTappedHandler: (String) -> ()
+    private let onCellTappedHandler: (String) -> ()
     
-    let categoriesArray = ["burger",
-        "texas",
-         "belgian",
-         "kosher",
-         "pizza",
-         "drinks"]
+    let categoriesArray = Category.allCases
     
     init(completion: @escaping(String) -> ()) {
         self.onCellTappedHandler = completion
@@ -28,10 +23,10 @@ extension MenuHeaderCollectionAdapter: UICollectionViewDelegateFlowLayout, UICol
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let font = UIFont.systemFont(ofSize: 18)
+        let font = UIFont.systemFont(ofSize: 13)
         let attributes = [NSAttributedString.Key.font : font as Any]
-        let width = categoriesArray[indexPath.item]
-            .size(withAttributes: attributes).width + 20
+        let width = categoriesArray[indexPath.item].rawValue
+            .size(withAttributes: attributes).width + 50
         
         return CGSize(width: width,
                       height: collectionView.frame.height)
@@ -42,7 +37,7 @@ extension MenuHeaderCollectionAdapter: UICollectionViewDelegateFlowLayout, UICol
         collectionView.scrollToItem(at: indexPath,
                                     at: .centeredHorizontally,
                                     animated: true)
-        onCellTappedHandler(categoriesArray[indexPath.item])
+        onCellTappedHandler(categoriesArray[indexPath.item].rawValue)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -57,19 +52,9 @@ extension MenuHeaderCollectionAdapter: UICollectionViewDelegateFlowLayout, UICol
             withReuseIdentifier: MenuHeaderCollectionCell.id,
             for: indexPath) as? MenuHeaderCollectionCell else { return UICollectionViewCell() }
         
-        let category = categoriesArray[indexPath.item]
+        let category = categoriesArray[indexPath.item].rawValue
         cell.config(category)
         
         return cell
     }
-}
-
-enum Category: String, CaseIterable {
-    case general
-    case business
-    case entertainment
-    case health
-    case science
-    case sports
-    case technology
 }

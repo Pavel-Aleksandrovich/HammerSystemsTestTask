@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class MenuMainView: UIView {
+final class MenuView: UIView {
     
-    let tableView = UITableView()
+    private let tableView = UITableView()
     
-    var tableViewDelegate: UITableViewDelegate? {
+    var delegate: UITableViewDelegate? {
         get {
             nil
         }
@@ -20,7 +20,7 @@ final class MenuMainView: UIView {
         }
     }
     
-    var tableViewDataSource: UITableViewDataSource? {
+    var dataSource: UITableViewDataSource? {
         get {
             nil
         }
@@ -40,15 +40,21 @@ final class MenuMainView: UIView {
     }
 }
 
-extension MenuMainView {
+extension MenuView {
     
     func reloadData() {
         self.tableView.reloadData()
     }
+    
+    func scrollTo(row: Int, section: Int) {
+        tableView.scrollToRow(at: IndexPath(row: row, section: section),
+                                            at: .top,
+                                            animated: true)
+    }
 }
 
 // MARK: - Config Appearance
-private extension MenuMainView {
+private extension MenuView {
     
     func configAppearance() {
         configView()
@@ -63,13 +69,13 @@ private extension MenuMainView {
         tableView.backgroundColor = .clear
         tableView.register(MenuTableCell.self,
                                 forCellReuseIdentifier: MenuTableCell.id)
-        tableView.register(MenuAdTableCell.self,
-                                forCellReuseIdentifier: MenuAdTableCell.id)
+        tableView.register(MenuAdsTableCell.self,
+                                forCellReuseIdentifier: MenuAdsTableCell.id)
     }
 }
 
 // MARK: - Make Constraints
-private extension MenuMainView {
+private extension MenuView {
     
     func makeConstraints() {
         makeTableViewConstraints()

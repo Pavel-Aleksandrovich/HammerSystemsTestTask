@@ -11,18 +11,19 @@ final class MenuHeaderCollectionCell: UICollectionViewCell {
     
     static let id = String(describing: MenuHeaderCollectionCell.self)
     
-    private let categoryLabel = UILabel()
+    private let titleLabel = UILabel()
     
     override var isSelected: Bool {
         didSet {
-            self.backgroundColor = self.isSelected ? .lightGray : .systemGray4
+            isSelected(bool: oldValue)
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configAppearance()
-        self.makeConstraints()
+        cellDidNotSelect()
+        configAppearance()
+        makeConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -33,39 +34,63 @@ final class MenuHeaderCollectionCell: UICollectionViewCell {
 extension MenuHeaderCollectionCell {
     
     func config(_ category: String) {
-        self.categoryLabel.text = category
+        self.titleLabel.text = category
     }
 }
 
+// MARK: - Logic
+private extension MenuHeaderCollectionCell {
+    
+    func isSelected(bool: Bool) {
+        switch isSelected {
+        case true:
+            cellDidSelect()
+        case false:
+            cellDidNotSelect()
+        }
+    }
+    
+    func cellDidSelect() {
+        titleLabel.textColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1)
+        titleLabel.font = UIFont.systemFont(ofSize: 13,
+                                            weight: UIFont.Weight(700))
+        
+        backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1).withAlphaComponent(0.2)
+        
+        layer.borderWidth = 0
+    }
+    
+    func cellDidNotSelect() {
+        backgroundColor = .white
+        
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1).withAlphaComponent(0.4).cgColor
+        
+        titleLabel.font = FontFamily.display(size: 13).name
+        titleLabel.textColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1).withAlphaComponent(0.4)
+    }
+}
+
+// MARK: - Config Appearance
 private extension MenuHeaderCollectionCell {
     
     func configAppearance() {
-        self.configImageNameLabel()
-        self.configView()
-    }
-    
-    func configView() {
-        backgroundColor = .white
         layer.cornerRadius = 16
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.red.cgColor
+        
+        titleLabel.textAlignment = .center
     }
-    
-    func configImageNameLabel() {
-        self.categoryLabel.textAlignment = .center
-    }
+}
+
+// MARK: - Make Constraints
+private extension MenuHeaderCollectionCell {
     
     func makeConstraints() {
-        self.makeImageNameLabelConstraints()
-    }
-    
-    func makeImageNameLabelConstraints() {
-        addSubview(categoryLabel)
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            categoryLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

@@ -14,18 +14,17 @@ final class TabBarAssembly: UITabBarController {
         viewControllers = [createMenuViewController(),
                            createContactViewController(),
                            createProfileViewController(),
-                           createBasketViewController()]
+                           createCartViewController()]
         
         tabBar.tintColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1)
-        
     }
 }
 
 private extension TabBarAssembly {
     
     func createMenuViewController() -> UIViewController {
-        let vc = MenuViewController()
-        let image = UIImage(systemName: "dollarsign.circle")
+        let vc = MenuAssembly.build()
+        let image = UIImage(named: "menu")
         vc.tabBarItem = UITabBarItem(title: "Меню",
                                      image: image,
                                      tag: 0)
@@ -35,7 +34,7 @@ private extension TabBarAssembly {
     
     func createContactViewController() -> UIViewController {
         let vc = UIViewController()
-        let image = UIImage(systemName: "dollarsign.circle")
+        let image = UIImage(named: "contact")
         vc.tabBarItem = UITabBarItem(title: "Контакты",
                                      image: image,
                                      tag: 1)
@@ -45,7 +44,7 @@ private extension TabBarAssembly {
     
     func createProfileViewController() -> UIViewController {
         let vc = UIViewController()
-        let image = UIImage(systemName: "dollarsign.circle")
+        let image = UIImage(named: "profile")
         vc.tabBarItem = UITabBarItem(title: "Профиль",
                                      image: image,
                                      tag: 2)
@@ -53,9 +52,10 @@ private extension TabBarAssembly {
         return UINavigationController(rootViewController: vc)
     }
     
-    func createBasketViewController() -> UIViewController {
+    func createCartViewController() -> UIViewController {
         let vc = UIViewController()
-        let image = UIImage(systemName: "dollarsign.circle")
+        vc.view.backgroundColor = .white
+        let image = UIImage(named: "cart")
         vc.tabBarItem = UITabBarItem(title: "Корзина",
                                      image: image,
                                      tag: 3)

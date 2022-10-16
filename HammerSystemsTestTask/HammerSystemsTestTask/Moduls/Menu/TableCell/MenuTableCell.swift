@@ -13,7 +13,7 @@ final class MenuTableCell: UITableViewCell {
     
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
-    private let priceView = UIView()
+    private let priceView = PriceView()
     private let menuImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle,
@@ -33,6 +33,11 @@ extension MenuTableCell {
     func setData(_ data: FoodViewModel) {
         titleLabel.text = data.title
         descriptionLabel.text = data.restaurantChain
+        priceView.text = "\(data.id)"
+    }
+    
+    func setImageData(_ data: Data) {
+        menuImageView.image = UIImage(data: data)
     }
 }
 
@@ -40,21 +45,16 @@ extension MenuTableCell {
 private extension MenuTableCell {
     
     func configAppearance() {
-        configView()
+        selectionStyle = .none
         
         menuImageView.backgroundColor = .darkGray
         
-        priceView.backgroundColor = .red
-        
-        titleLabel.text = "Баварские сосиски"
         titleLabel.numberOfLines = 0
+        titleLabel.font = FontFamily.display(size: 17).name
         
-        descriptionLabel.text = "Соси ски sad Соси ски das Соси ски dsa Соси ски Сос иски asd Соси ски dsa Сос иски ada с иски asd Соси ски dsa Сос иски ada"
         descriptionLabel.numberOfLines = 0
-    }
-    
-    func configView() {
-        selectionStyle = .none
+        descriptionLabel.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6784313725, alpha: 1)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 13)
     }
 }
 
@@ -99,7 +99,6 @@ private extension MenuTableCell {
             priceView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             priceView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             priceView.heightAnchor.constraint(equalToConstant: 32),
-            priceView.widthAnchor.constraint(equalToConstant: 87)
         ])
     }
     
