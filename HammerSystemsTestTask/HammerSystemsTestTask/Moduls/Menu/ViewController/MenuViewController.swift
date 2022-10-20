@@ -77,7 +77,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                    heightForHeaderInSection section: Int) -> CGFloat {
         30
     }
-
+    
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
         TableHeaderView()
@@ -143,7 +143,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .category(let array):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCategoryCollectionCell.id, for: indexPath) as? MenuCategoryCollectionCell
             else { return UICollectionViewCell() }
-
+            
             let category = array[indexPath.row].rawValue
             cell.config(category)
             

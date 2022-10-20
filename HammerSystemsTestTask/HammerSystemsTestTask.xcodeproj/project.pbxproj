@@ -31,6 +31,7 @@
 		843D627128F926150079945F /* MenuCategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627028F926150079945F /* MenuCategoryCollectionCell.swift */; };
 		843D627528F93D7D0079945F /* MenuAdsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D627428F93D7D0079945F /* MenuAdsCollectionCell.swift */; };
 		84F160B2290124E300333C53 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F160B1290124E300333C53 /* TableHeaderView.swift */; };
+		84F160B829015D3F00333C53 /* ListSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F160B729015D3F00333C53 /* ListSections.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		843D627028F926150079945F /* MenuCategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryCollectionCell.swift; sourceTree = "<group>"; };
 		843D627428F93D7D0079945F /* MenuAdsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdsCollectionCell.swift; sourceTree = "<group>"; };
 		84F160B1290124E300333C53 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		84F160B729015D3F00333C53 /* ListSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSections.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				842B853B28FBC75E00674976 /* Category.swift */,
+				84F160B729015D3F00333C53 /* ListSections.swift */,
 				842B853928FBC43700674976 /* FontFamily.swift */,
 				842B854828FBE43400674976 /* ImageFamily.swift */,
 			);
@@ -305,6 +308,7 @@
 				842B853A28FBC43700674976 /* FontFamily.swift in Sources */,
 				842B852428F9690F00674976 /* NetworkService.swift in Sources */,
 				843D627128F926150079945F /* MenuCategoryCollectionCell.swift in Sources */,
+				84F160B829015D3F00333C53 /* ListSections.swift in Sources */,
 				842B854228FBD88000674976 /* MenuInteractor.swift in Sources */,
 				843D627528F93D7D0079945F /* MenuAdsCollectionCell.swift in Sources */,
 				842B853E28FBC8DF00674976 /* MenuPresenter.swift in Sources */,
