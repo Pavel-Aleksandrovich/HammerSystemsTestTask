@@ -18,7 +18,7 @@
 - DI
 
 ## Screenshots
-<img width="256" alt="task1" src="https://user-images.githubusercontent.com/87460819/196023885-de6b262d-3945-4b57-9d56-b860e0fe3206.png"><img width="256" alt="Снимок экрана 2022-10-16 в 14 30 01" src="https://user-images.githubusercontent.com/87460819/196023886-fe81ddbe-3454-4aa2-859f-6d228b7e9fbf.png">
+<img width="269" alt="Снимок экрана 2022-10-20 в 17 15 51" src="https://user-images.githubusercontent.com/87460819/196930651-a2dd07e7-baef-4f2c-8cc1-af305e64997e.png"><img width="269" alt="Снимок экрана 2022-10-20 в 17 16 23" src="https://user-images.githubusercontent.com/87460819/196930666-42736053-cc38-4663-9efc-21ecf1212804.png">
 
 ## Author
 
