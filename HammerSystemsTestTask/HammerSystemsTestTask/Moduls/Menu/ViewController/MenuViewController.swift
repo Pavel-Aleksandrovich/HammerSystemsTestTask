@@ -10,20 +10,15 @@ import UIKit
 protocol IMenuViewController: AnyObject {
     func reloadData()
     func scrollTo(row: Int, section: Int)
+    func didScroll(state: ScrollState)
 }
 
 final class MenuViewController: UIViewController {
     
-    private let mainView = MenuView()
-    private let headerView = MenuHeaderCollectionView()
-    private let adsCollectionAdapter = MenuAdsCollectionAdapter()
+    private lazy var mainView = MenuView(sections: presenter.sections)
     private let leftBarButtonView = MenuBarButtonView()
     
     private let presenter: IMenuPresenter
-    
-    private lazy var headerCollectionAdapter = MenuHeaderCollectionAdapter { [ weak self ] string in
-        self?.presenter.didSelectCategory(string)
-    }
     
     init(presenter: IMenuPresenter) {
         self.presenter = presenter
@@ -45,6 +40,7 @@ final class MenuViewController: UIViewController {
     }
 }
 
+// MARK: - IMenuViewController
 extension MenuViewController: IMenuViewController {
     
     func scrollTo(row: Int, section: Int) {
@@ -54,95 +50,104 @@ extension MenuViewController: IMenuViewController {
     func reloadData() {
         mainView.reloadData()
     }
+    
+    func didScroll(state: ScrollState) {
+        mainView.didScroll(state: state)
+    }
 }
 
+// MARK: - TableView Delegate & DataSource
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 112
-        case 1:
-            return 170
-        default:
-            return 0
-        }
+        170
     }
     
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return presenter.numberOfRowsInSection
-        default:
-            return 0
-        }
+        presenter.numberOfRowsInSection
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        presenter.didScroll(scrollView.contentOffset.y)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   heightForHeaderInSection section: Int) -> CGFloat {
+        30
+    }
+
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
+        TableHeaderView()
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuAdsTableCell.id,
-                                                           for: indexPath) as? MenuAdsTableCell
-            else { return UITableViewCell() }
-            
-            cell.delegate = adsCollectionAdapter
-            cell.dataSource = adsCollectionAdapter
-            
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableCell.id,
-                                                           for: indexPath) as? MenuTableCell
-            else { return UITableViewCell() }
-            
-            let food = presenter.getFoodByIndex(indexPath.row)
-            
-            presenter.loadImageData(food.image) { data in
-                cell.setImageData(data)
-            }
-            
-            cell.setData(food)
-            
-            return cell
-        default:
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableCell.id,
+                                                       for: indexPath) as? MenuTableCell
+        else { return UITableViewCell() }
+        
+        let food = presenter.getFoodByIndex(indexPath.row)
+        
+        presenter.loadImageData(food.image) { data in
+            cell.setImageData(data)
         }
+        
+        cell.setData(food)
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - CollectionView Delegate & DataSource
+extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        presenter.sections.count
     }
     
-    func tableView(_ tableView: UITableView,
-                   heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 0
-        case 1:
-            return 72
-        default:
-            return 0
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        presenter.sections[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        switch presenter.sections[indexPath.section] {
+            
+        case .ads: break
+        case .category(let array):
+            collectionView.scrollToItem(at: indexPath,
+                                        at: .centeredHorizontally,
+                                        animated: true)
+            presenter.didSelectCategory(array[indexPath.item].rawValue)
         }
     }
     
-    func tableView(_ tableView: UITableView,
-                   viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            return nil
-        case 1:
-            return headerView
-        default:
-            return nil
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        switch presenter.sections[indexPath.section] {
+        case .ads:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuAdsCollectionCell.id, for: indexPath) as? MenuAdsCollectionCell
+            else { return UICollectionViewCell() }
+            
+            return cell
+        case .category(let array):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCategoryCollectionCell.id, for: indexPath) as? MenuCategoryCollectionCell
+            else { return UICollectionViewCell() }
+
+            let category = array[indexPath.row].rawValue
+            cell.config(category)
+            
+            return cell
         }
     }
 }
@@ -151,12 +156,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 private extension MenuViewController {
     
     func configAppearance() {
-        mainView.delegate = self
-        mainView.dataSource = self
+        mainView.tableViewDelegate = self
+        mainView.tableViewDataSource = self
         
-        headerView.dataSource = headerCollectionAdapter
-        headerView.delegate = headerCollectionAdapter
-        
+        mainView.collectionViewDelegate = self
+        mainView.collectionViewDataSource = self
         
         let item = UIBarButtonItem(customView: leftBarButtonView)
         navigationItem.leftBarButtonItem = item

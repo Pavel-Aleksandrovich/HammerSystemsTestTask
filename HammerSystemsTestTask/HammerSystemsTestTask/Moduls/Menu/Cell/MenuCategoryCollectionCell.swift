@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class MenuHeaderCollectionCell: UICollectionViewCell {
+final class MenuCategoryCollectionCell: UICollectionViewCell {
     
-    static let id = String(describing: MenuHeaderCollectionCell.self)
+    static let id = String(describing: MenuCategoryCollectionCell.self)
     
     private let titleLabel = UILabel()
     
@@ -18,6 +18,15 @@ final class MenuHeaderCollectionCell: UICollectionViewCell {
             isSelected(bool: oldValue)
         }
     }
+    
+    override func systemLayoutSizeFitting(_ targetSize: CGSize,
+                                          withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
+                                          verticalFittingPriority: UILayoutPriority) -> CGSize {
+        
+        return CGSize(width: configCellWidth(),
+                      height: targetSize.height)
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +40,7 @@ final class MenuHeaderCollectionCell: UICollectionViewCell {
     }
 }
 
-extension MenuHeaderCollectionCell {
+extension MenuCategoryCollectionCell {
     
     func config(_ category: String) {
         self.titleLabel.text = category
@@ -39,7 +48,7 @@ extension MenuHeaderCollectionCell {
 }
 
 // MARK: - Logic
-private extension MenuHeaderCollectionCell {
+private extension MenuCategoryCollectionCell {
     
     func isSelected(bool: Bool) {
         switch isSelected {
@@ -61,7 +70,7 @@ private extension MenuHeaderCollectionCell {
     }
     
     func cellDidNotSelect() {
-        backgroundColor = .white
+        backgroundColor = #colorLiteral(red: 0.9623988271, green: 0.9691058993, blue: 0.981377542, alpha: 1)
         
         layer.borderWidth = 1
         layer.borderColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1).withAlphaComponent(0.4).cgColor
@@ -69,10 +78,18 @@ private extension MenuHeaderCollectionCell {
         titleLabel.font = FontFamily.display(size: 13).name
         titleLabel.textColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1).withAlphaComponent(0.4)
     }
+    
+    func configCellWidth() -> CGFloat {
+        let font = UIFont.systemFont(ofSize: 13)
+        let attributes = [NSAttributedString.Key.font : font as Any]
+        
+        return titleLabel.text!
+            .size(withAttributes: attributes).width + 50
+    }
 }
 
 // MARK: - Config Appearance
-private extension MenuHeaderCollectionCell {
+private extension MenuCategoryCollectionCell {
     
     func configAppearance() {
         layer.cornerRadius = 16
@@ -82,10 +99,10 @@ private extension MenuHeaderCollectionCell {
 }
 
 // MARK: - Make Constraints
-private extension MenuHeaderCollectionCell {
+private extension MenuCategoryCollectionCell {
     
     func makeConstraints() {
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

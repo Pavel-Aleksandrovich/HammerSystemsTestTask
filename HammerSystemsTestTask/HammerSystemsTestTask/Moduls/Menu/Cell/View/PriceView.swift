@@ -16,7 +16,7 @@ final class PriceView: UIView {
             nil
         }
         set {
-            titleLabel.text = newValue
+            titleLabel.text = newValue! + " ₽"
         }
     }
     

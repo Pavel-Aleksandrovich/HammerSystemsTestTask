@@ -10,6 +10,8 @@ import UIKit
 
 protocol IMenuPresenter: AnyObject {
     var numberOfRowsInSection: Int { get }
+    var sections: [ListSections] { get set }
+    func didScroll(_ y: CGFloat)
     func getFoodByIndex(_ index: Int) -> FoodViewModel
     func didSelectCategory(_ string: String)
     func loadImageData(_ string: String, completion: @escaping (Data) -> ())
@@ -20,6 +22,11 @@ final class MenuPresenter {
     
     private weak var controller: IMenuViewController?
     private let interactor: IMenuInteractor
+    
+    private var scrollFlag = false
+    
+    var sections: [ListSections] = [.ads,
+                                    .category(Category.allCases)]
     
     private var foodArray: [FoodViewModel] = []
     
@@ -36,6 +43,18 @@ extension MenuPresenter: IMenuPresenter {
         }
     }
     
+    func didScroll(_ y: CGFloat) {
+        if y > 0 && scrollFlag == false {
+            scrollFlag = true
+            controller?.didScroll(state: .up)
+        }
+        
+        if y < 0 && scrollFlag == true {
+            scrollFlag = false
+            controller?.didScroll(state: .down)
+        }
+    }
+    
     func getFoodByIndex(_ index: Int) -> FoodViewModel {
         foodArray[index]
     }
@@ -43,7 +62,7 @@ extension MenuPresenter: IMenuPresenter {
     func didSelectCategory(_ string: String) {
         guard let row = foodArray.firstIndex(where: { $0.category == string }) else { return }
         
-        controller?.scrollTo(row: row, section: 1)
+        controller?.scrollTo(row: row, section: 0)
     }
     
     func loadImageData(_ string: String, completion: @escaping (Data) -> ()) {
