@@ -1,5 +1,5 @@
 # HammerSystems
-- Test task from HammerSystems company for junior iOS developer position
+- Test task from HammerSystems company for iOS developer position
 
 ## Branch
 - Current branch - **main**
